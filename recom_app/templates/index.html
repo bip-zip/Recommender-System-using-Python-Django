@@ -1,0 +1,137 @@
+{% extends 'base.html'%}
+{% block navbar%}
+{% load bootstrap %}
+
+<div class="container mt-2 mb-5">
+<div class="col-lg-12 mx-auto">
+    <div class="col-lg-5 ms-auto my-3">
+      <form class="d-flex mt-3" method="GET" >
+        <input class="form-control me-2 fs-6 fw-light" type="search" placeholder="Search products" name="query" 
+            aria-label="Search">
+        <button class="btn btn-primary text-light fw-bold" type="submit">Search</button>
+    </form>
+    </div>
+    <div class="shadow p-5 mx-auto">
+        <div class="row">
+            <div class="col-lg-5 mx-2 mx-auto border">
+                <h5 class="text-center p-2 fw-light">Previous orders</h5><hr>
+                <table class="table">
+                    <tbody>
+                      {% for i in previous_order %}
+                      <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{i.product.name}}</td>
+                        <td>Rs. {{i.product.price}}</td>
+                        <td>{{i.product.category}}</td>
+                      </tr>
+                      {% endfor %}
+                     
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-lg-5 mx-2 mx-auto border ">
+                <h5 class="text-center p-2 fw-light">Products recommended <em>(content-based)</em></h5><hr>
+                <table class="table">
+                    <tbody>
+                      {% for i in content_based%}
+                      <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{i.name}}</td>
+                        <td>Rs. {{i.price}}</td>
+                        <td>{{i.category}}</td>
+                      </tr>
+                      {% endfor %}
+                    
+                     
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-lg-5 mx-2 mx-auto border my-4 ">
+              <h5 class="text-center p-2 fw-light">Products recommended <em>(popularity based)</em></h5><hr>
+              <table class="table">
+                  <tbody>
+                    {% for i in popularity %}
+                    <tr>
+                      <th scope="row">{{forloop.counter}}</th>
+                      <td>{{i.name}}</td>
+                      <td>Rs. {{i.price}}</td>
+                      <td>{{i.category}}</td>
+                    </tr>
+                    
+                    {% endfor %}
+                   
+                  </tbody>
+                </table>
+          </div>
+            
+          <div class="col-lg-5 mx-2 mx-auto border my-4">
+            <h5 class="text-center p-2 fw-light">Products recommended <em>(collaborative filtering)</em></h5><hr>
+            <table class="table">
+                <tbody>
+                  {% for i in collaborative %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{i.name}}</td>
+                    <td>Rs. {{i.price}}</td>
+                    <td>{{i.category}}</td>
+                   
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+        </div>
+        <div class="col-lg-5 mx-2 mx-auto border my-4 ">
+          <h5 class="text-center p-2 fw-light">Recent search history</h5><hr>
+          <table class="table">
+              <tbody>
+                {% for i in search_history %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>' <em>{{i.query}}</em> '</td>
+                    <td>{{i.date}}</td>
+                    
+                  </tr>
+                  
+                  {% endfor %}
+               
+              </tbody>
+            </table>
+      </div>
+        <div class="col-lg-5 mx-2 mx-auto border my-4 ">
+          <h5 class="text-center p-2 fw-light">Search Results:</em></h5><hr>
+          <table class="table">
+              <tbody>
+                {% for i in results %}
+                <tr>
+                  <th scope="row">{{forloop.counter}}</th>
+                  <td>{{i.name}}</td>
+                  <td>Rs. {{i.price}}</td>
+                  <td>{{i.category}}</td>
+                </tr>
+                {%empty%}
+                <p class="text-center text-danger">No search results</p>
+                {% endfor %}
+               
+              </tbody>
+            </table>
+      </div>
+
+        </div>
+        
+       
+    </div>
+   
+ 
+
+</div>
+
+</div>
+<p class="text-center fw-light">🍳 By Bipin Prakash Dhakal</p>
+      {% endblock %}
+      
+      {% block script%}
+      {% endblock %}
+      
+    </body>
+    </html>

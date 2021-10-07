@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+{% block navbar%}
+{% load bootstrap %}
+
+<div class="container mt-5">
+<div class="col-lg-6 mx-auto">
+    <h4 class="text-center mt-4 my-3">Login into the system</h4>
+    <div class="shadow p-5">
+        <form method="POST">{% csrf_token %}
+ 
+            {{form|bootstrap}}
+           
+             <input type="submit" class="btn btn-primary btn-sm my-3 " name="Login">
+       </form>
+       
+    </div>
+   
+ 
+
+</div>
+</div>
+      {% endblock %}
+
+      {% block script%}
+      {% endblock %}
+    </body>
+    </html>
